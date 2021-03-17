@@ -10,7 +10,7 @@ def masked_l1_loss(input, target, mask):
     return (F.l1_loss(input, target, reduction='none') * mask.float()).sum()
 
 def huber_loss(input, target, mask=None):
-    loss = F.smooth_l1_loss(input, target, reduction='none')
+    loss = F.smooth_l1_loss(input, target, reduction='mean')
     if mask is None:
         return loss.sum()
     return (loss * mask.float()).sum()
